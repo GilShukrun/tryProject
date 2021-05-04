@@ -25,6 +25,12 @@ namespace tryProject.Controllers
             return View(await _context.Association.ToListAsync());
         }
 
+        public async Task<IActionResult> Search(string query)
+        {
+            var tryProjectcontext = _context.Association.Where(a => a.City.Contains(query));
+            return View(await _context.Association.ToListAsync());
+        }
+
         // GET: Associations/Details/5
         public async Task<IActionResult> Details(int? id)
         {
