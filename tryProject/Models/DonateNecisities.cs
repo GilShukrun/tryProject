@@ -10,7 +10,7 @@ namespace tryProject.Models
     {
         public int Id { get; set; }
 
-        public string area { get; set; }
+        public string Area { get; set; }
 
         [Display(Name="You want to donate to:")]
         public string whoIsFor { get; set; }

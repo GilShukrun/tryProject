@@ -8,8 +8,8 @@ namespace tryProject.Models
     public class MoneyDonation
     {
         public  int Id { get; set; }
-        public int sum{ get; set; }
+        public int Sum{ get; set; }
 
-        public string purpose { get; set; }
+        public string Purpose { get; set; }
     }
 }
