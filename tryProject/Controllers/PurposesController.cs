@@ -10,22 +10,22 @@ using tryProject.Models;
 
 namespace tryProject.Controllers
 {
-    public class AssociationsController : Controller
+    public class PurposesController : Controller
     {
         private readonly tryProjectContext _context;
 
-        public AssociationsController(tryProjectContext context)
+        public PurposesController(tryProjectContext context)
         {
             _context = context;
         }
 
-        // GET: Associations
+        // GET: Purposes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Association.ToListAsync());
+            return View(await _context.Purpose.ToListAsync());
         }
 
-        // GET: Associations/Details/5
+        // GET: Purposes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace tryProject.Controllers
                 return NotFound();
             }
 
-            var association = await _context.Association
+            var purpose = await _context.Purpose
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (association == null)
+            if (purpose == null)
             {
                 return NotFound();
             }
 
-            return View(association);
+            return View(purpose);
         }
 
-        // GET: Associations/Create
+        // GET: Purposes/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Associations/Create
+        // POST: Purposes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,City")] Association association)
+        public async Task<IActionResult> Create([Bind("Id,Name")] Purpose purpose)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(association);
+                _context.Add(purpose);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(association);
+            return View(purpose);
         }
 
-        // GET: Associations/Edit/5
+        // GET: Purposes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace tryProject.Controllers
                 return NotFound();
             }
 
-            var association = await _context.Association.FindAsync(id);
-            if (association == null)
+            var purpose = await _context.Purpose.FindAsync(id);
+            if (purpose == null)
             {
                 return NotFound();
             }
-            return View(association);
+            return View(purpose);
         }
 
-        // POST: Associations/Edit/5
+        // POST: Purposes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,City")] Association association)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Purpose purpose)
         {
-            if (id != association.Id)
+            if (id != purpose.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace tryProject.Controllers
             {
                 try
                 {
-                    _context.Update(association);
+                    _context.Update(purpose);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AssociationExists(association.Id))
+                    if (!PurposeExists(purpose.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace tryProject.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(association);
+            return View(purpose);
         }
 
-        // GET: Associations/Delete/5
+        // GET: Purposes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace tryProject.Controllers
                 return NotFound();
             }
 
-            var association = await _context.Association
+            var purpose = await _context.Purpose
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (association == null)
+            if (purpose == null)
             {
                 return NotFound();
             }
 
-            return View(association);
+            return View(purpose);
         }
 
-        // POST: Associations/Delete/5
+        // POST: Purposes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var association = await _context.Association.FindAsync(id);
-            _context.Association.Remove(association);
+            var purpose = await _context.Purpose.FindAsync(id);
+            _context.Purpose.Remove(purpose);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AssociationExists(int id)
+        private bool PurposeExists(int id)
         {
-            return _context.Association.Any(e => e.Id == id);
+            return _context.Purpose.Any(e => e.Id == id);
         }
     }
 }

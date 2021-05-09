@@ -10,22 +10,23 @@ using tryProject.Models;
 
 namespace tryProject.Controllers
 {
-    public class DonateNecisitiesController : Controller
+    public class BranchesController : Controller
     {
         private readonly tryProjectContext _context;
 
-        public DonateNecisitiesController(tryProjectContext context)
+        public BranchesController(tryProjectContext context)
         {
             _context = context;
         }
 
-        // GET: DonateNecisities
+        // GET: Branches
         public async Task<IActionResult> Index()
         {
-            return View(await _context.DonateNecisities.ToListAsync());
+            var tryProjectContext = _context.Branch.Include(b => b.Association);
+            return View(await tryProjectContext.ToListAsync());
         }
 
-        // GET: DonateNecisities/Details/5
+        // GET: Branches/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +34,42 @@ namespace tryProject.Controllers
                 return NotFound();
             }
 
-            var donateNecisities = await _context.DonateNecisities
+            var branch = await _context.Branch
+                .Include(b => b.Association)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (donateNecisities == null)
+            if (branch == null)
             {
                 return NotFound();
             }
 
-            return View(donateNecisities);
+            return View(branch);
         }
 
-        // GET: DonateNecisities/Create
+        // GET: Branches/Create
         public IActionResult Create()
         {
+            ViewData["AssociationId"] = new SelectList(_context.Association, "Id", "Id");
             return View();
         }
 
-        // POST: DonateNecisities/Create
+        // POST: Branches/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,area,whoIsFor")] DonateNecisities donateNecisities)
+        public async Task<IActionResult> Create([Bind("Id,Name,AssociationId")] Branch branch)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(donateNecisities);
+                _context.Add(branch);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(donateNecisities);
+            ViewData["AssociationId"] = new SelectList(_context.Association, "Id", "Id", branch.AssociationId);
+            return View(branch);
         }
 
-        // GET: DonateNecisities/Edit/5
+        // GET: Branches/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +77,23 @@ namespace tryProject.Controllers
                 return NotFound();
             }
 
-            var donateNecisities = await _context.DonateNecisities.FindAsync(id);
-            if (donateNecisities == null)
+            var branch = await _context.Branch.FindAsync(id);
+            if (branch == null)
             {
                 return NotFound();
             }
-            return View(donateNecisities);
+            ViewData["AssociationId"] = new SelectList(_context.Association, "Id", "Id", branch.AssociationId);
+            return View(branch);
         }
 
-        // POST: DonateNecisities/Edit/5
+        // POST: Branches/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,area,whoIsFor")] DonateNecisities donateNecisities)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,AssociationId")] Branch branch)
         {
-            if (id != donateNecisities.Id)
+            if (id != branch.Id)
             {
                 return NotFound();
             }
@@ -97,12 +102,12 @@ namespace tryProject.Controllers
             {
                 try
                 {
-                    _context.Update(donateNecisities);
+                    _context.Update(branch);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DonateNecisitiesExists(donateNecisities.Id))
+                    if (!BranchExists(branch.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +118,11 @@ namespace tryProject.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(donateNecisities);
+            ViewData["AssociationId"] = new SelectList(_context.Association, "Id", "Id", branch.AssociationId);
+            return View(branch);
         }
 
-        // GET: DonateNecisities/Delete/5
+        // GET: Branches/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +130,31 @@ namespace tryProject.Controllers
                 return NotFound();
             }
 
-            var donateNecisities = await _context.DonateNecisities
+            var branch = await _context.Branch
+                .Include(b => b.Association)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (donateNecisities == null)
+            if (branch == null)
             {
                 return NotFound();
             }
 
-            return View(donateNecisities);
+            return View(branch);
         }
 
-        // POST: DonateNecisities/Delete/5
+        // POST: Branches/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var donateNecisities = await _context.DonateNecisities.FindAsync(id);
-            _context.DonateNecisities.Remove(donateNecisities);
+            var branch = await _context.Branch.FindAsync(id);
+            _context.Branch.Remove(branch);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool DonateNecisitiesExists(int id)
+        private bool BranchExists(int id)
         {
-            return _context.DonateNecisities.Any(e => e.Id == id);
+            return _context.Branch.Any(e => e.Id == id);
         }
     }
 }

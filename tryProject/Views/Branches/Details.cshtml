@@ -1,4 +1,4 @@
-﻿@model tryProject.Models.DonateNecisities
+﻿@model tryProject.Models.Branch
 
 @{
     ViewData["Title"] = "Details";
@@ -7,20 +7,20 @@
 <h1>Details</h1>
 
 <div>
-    <h4>DonateNecisities</h4>
+    <h4>Branch</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Area)
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Area)
+            @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.whoIsFor)
+            @Html.DisplayNameFor(model => model.Association)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.whoIsFor)
+            @Html.DisplayFor(model => model.Association.Id)
         </dd>
     </dl>
 </div>

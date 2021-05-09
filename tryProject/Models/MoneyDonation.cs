@@ -10,6 +10,8 @@ namespace tryProject.Models
         public  int Id { get; set; }
         public int Sum{ get; set; }
 
-        public string Purpose { get; set; }
+        public int PurposeId { get; set; }
+        public Purpose Purpose { get; set; }
+        
     }
 }

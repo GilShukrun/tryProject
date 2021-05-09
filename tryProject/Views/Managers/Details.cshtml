@@ -1,4 +1,4 @@
-﻿@model tryProject.Models.MoneyDonation
+﻿@model tryProject.Models.Manager
 
 @{
     ViewData["Title"] = "Details";
@@ -7,20 +7,20 @@
 <h1>Details</h1>
 
 <div>
-    <h4>MoneyDonation</h4>
+    <h4>Manager</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Sum)
+            @Html.DisplayNameFor(model => model.Name)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Sum)
+            @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Purpose)
+            @Html.DisplayNameFor(model => model.Association)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Purpose.Id)
+            @Html.DisplayFor(model => model.Association.Id)
         </dd>
     </dl>
 </div>

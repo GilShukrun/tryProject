@@ -16,8 +16,24 @@ namespace tryProject.Data
 
         public DbSet<tryProject.Models.MoneyDonation> MoneyDonation { get; set; }
 
-        public DbSet<tryProject.Models.DonateNecisities> DonateNecisities { get; set; }
+
 
         public DbSet<tryProject.Models.Association> Association { get; set; }
+
+
+
+        public DbSet<tryProject.Models.Branch> Branch { get; set; }
+
+
+
+        public DbSet<tryProject.Models.CommunityWorks> CommunityWorks { get; set; }
+
+
+
+        public DbSet<tryProject.Models.Purpose> Purpose { get; set; }
+
+
+
+        public DbSet<tryProject.Models.Manager> Manager { get; set; }
     }
 }

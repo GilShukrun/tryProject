@@ -10,22 +10,22 @@ using tryProject.Models;
 
 namespace tryProject.Controllers
 {
-    public class AssociationsController : Controller
+    public class CommunityWorksController : Controller
     {
         private readonly tryProjectContext _context;
 
-        public AssociationsController(tryProjectContext context)
+        public CommunityWorksController(tryProjectContext context)
         {
             _context = context;
         }
 
-        // GET: Associations
+        // GET: CommunityWorks
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Association.ToListAsync());
+            return View(await _context.CommunityWorks.ToListAsync());
         }
 
-        // GET: Associations/Details/5
+        // GET: CommunityWorks/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace tryProject.Controllers
                 return NotFound();
             }
 
-            var association = await _context.Association
+            var communityWorks = await _context.CommunityWorks
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (association == null)
+            if (communityWorks == null)
             {
                 return NotFound();
             }
 
-            return View(association);
+            return View(communityWorks);
         }
 
-        // GET: Associations/Create
+        // GET: CommunityWorks/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Associations/Create
+        // POST: CommunityWorks/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,City")] Association association)
+        public async Task<IActionResult> Create([Bind("Id,Decscription")] CommunityWorks communityWorks)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(association);
+                _context.Add(communityWorks);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(association);
+            return View(communityWorks);
         }
 
-        // GET: Associations/Edit/5
+        // GET: CommunityWorks/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace tryProject.Controllers
                 return NotFound();
             }
 
-            var association = await _context.Association.FindAsync(id);
-            if (association == null)
+            var communityWorks = await _context.CommunityWorks.FindAsync(id);
+            if (communityWorks == null)
             {
                 return NotFound();
             }
-            return View(association);
+            return View(communityWorks);
         }
 
-        // POST: Associations/Edit/5
+        // POST: CommunityWorks/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,City")] Association association)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Decscription")] CommunityWorks communityWorks)
         {
-            if (id != association.Id)
+            if (id != communityWorks.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace tryProject.Controllers
             {
                 try
                 {
-                    _context.Update(association);
+                    _context.Update(communityWorks);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AssociationExists(association.Id))
+                    if (!CommunityWorksExists(communityWorks.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace tryProject.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(association);
+            return View(communityWorks);
         }
 
-        // GET: Associations/Delete/5
+        // GET: CommunityWorks/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace tryProject.Controllers
                 return NotFound();
             }
 
-            var association = await _context.Association
+            var communityWorks = await _context.CommunityWorks
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (association == null)
+            if (communityWorks == null)
             {
                 return NotFound();
             }
 
-            return View(association);
+            return View(communityWorks);
         }
 
-        // POST: Associations/Delete/5
+        // POST: CommunityWorks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var association = await _context.Association.FindAsync(id);
-            _context.Association.Remove(association);
+            var communityWorks = await _context.CommunityWorks.FindAsync(id);
+            _context.CommunityWorks.Remove(communityWorks);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AssociationExists(int id)
+        private bool CommunityWorksExists(int id)
         {
-            return _context.Association.Any(e => e.Id == id);
+            return _context.CommunityWorks.Any(e => e.Id == id);
         }
     }
 }

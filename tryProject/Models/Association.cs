@@ -11,8 +11,14 @@ namespace tryProject.Models
 
         public string Name { get; set; }
 
-        public string DonateField { get; set; }
+        public string  City { get; set; }
 
-        public string   City { get; set; }
+        public List<Purpose> Purposes { get; set; }
+
+        public List<CommunityWorks> CommunityWorks{ get; set; }
+
+        public List<Branch> Branch  { get; set; }
+
+        public Manager Manager { get; set; }
     }
 }
