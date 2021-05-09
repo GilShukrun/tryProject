@@ -46,6 +46,7 @@ namespace tryProject.Controllers
         // GET: CommunityWorks/Create
         public IActionResult Create()
         {
+            ViewData["Association"] = new SelectList(_context.Set<Association>(), "Id", "Name");
             return View();
         }
 
@@ -54,7 +55,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Decscription")] CommunityWorks communityWorks)
+        public async Task<IActionResult> Create([Bind("Id,Decscription,Association.Id,Association.Name")] CommunityWorks communityWorks)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +87,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Decscription")] CommunityWorks communityWorks)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Decscription,Association")] CommunityWorks communityWorks)
         {
             if (id != communityWorks.Id)
             {

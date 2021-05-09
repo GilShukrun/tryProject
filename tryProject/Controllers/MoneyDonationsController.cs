@@ -48,7 +48,7 @@ namespace tryProject.Controllers
         // GET: MoneyDonations/Create
         public IActionResult Create()
         {
-            ViewData["PurposeId"] = new SelectList(_context.Purpose, "Id", "Id");
+            ViewData["PurposeId"] = new SelectList(_context.Purpose, "Id", "Id","Name");
             return View();
         }
 

@@ -46,6 +46,8 @@ namespace tryProject.Controllers
         // GET: Purposes/Create
         public IActionResult Create()
         {
+            ViewData["Association"] = new SelectList(_context.Set<Association>(), "Id", "Name");
+            ViewData["MoneyDonation"] = new SelectList(_context.Set<MoneyDonation>(), "Id", "Sum");
             return View();
         }
 
@@ -54,7 +56,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] Purpose purpose)
+        public async Task<IActionResult> Create([Bind("Id,Name,AssociationId,MoneyDonation")] Purpose purpose)
         {
             if (ModelState.IsValid)
             {

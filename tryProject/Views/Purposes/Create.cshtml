@@ -18,6 +18,16 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="MoneyDonation" class="control-label"></label>
+                <input asp-for="MoneyDonation" class="form-control" />
+                <span asp-validation-for="MoneyDonation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AssociationId" class="control-label"></label>
+                <input asp-for="AssociationId" class="form-control" />
+                <span asp-validation-for="AssociationId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>

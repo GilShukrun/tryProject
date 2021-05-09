@@ -46,6 +46,7 @@ namespace tryProject.Controllers
         // GET: Associations/Create
         public IActionResult Create()
         {
+            ViewData["Manager"] = new SelectList(_context.Set<Manager>(), "Id", "Name", "City");
             return View();
         }
 

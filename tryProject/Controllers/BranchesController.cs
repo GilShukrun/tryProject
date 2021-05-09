@@ -48,7 +48,7 @@ namespace tryProject.Controllers
         // GET: Branches/Create
         public IActionResult Create()
         {
-            ViewData["AssociationId"] = new SelectList(_context.Association, "Id", "Id");
+            ViewData["AssociationId"] = new SelectList(_context.Association, "Id", "Id", nameof(Association.Name));
             return View();
         }
 
