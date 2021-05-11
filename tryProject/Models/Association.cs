@@ -22,7 +22,7 @@ namespace tryProject.Models
 
         public List<CommunityWorks> CommunityWorks{ get; set; }
 
-        [Required(ErrorMessage ="You must write the manger of this association"]
+        [Required(ErrorMessage ="You must write the manger of this association")]
         public Manager Manager { get; set; }
     }
 }
