@@ -17,8 +17,6 @@ namespace tryProject.Models
 
         public List<CommunityWorks> CommunityWorks{ get; set; }
 
-        public List<Branch> Branch  { get; set; }
-
         public Manager Manager { get; set; }
     }
 }

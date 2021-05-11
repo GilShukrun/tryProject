@@ -15,6 +15,6 @@ namespace tryProject.Models
         public List<MoneyDonation> MoneyDonation{ get; set; }
 
         [Display(Name="Association")]
-        public List<Association> AssociationId { get; set; }
+        public List<Association> Association { get; set; }
     }
 }

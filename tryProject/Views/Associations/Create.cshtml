@@ -18,29 +18,25 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Manager" class="control-label"></label>
-                <input asp-for="Manager" class="form-control" />
-                <span asp-validation-for="Manager" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Purposes" class="control-label"></label>
-                <input asp-for="Purposes" class="form-control" />
-                <span asp-validation-for="Purposes" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CommunityWorks" class="control-label"></label>
-                <input asp-for="CommunityWorks" class="form-control" />
-                <span asp-validation-for="CommunityWorks" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="City" class="control-label"></label>
                 <input asp-for="City" class="form-control" />
                 <span asp-validation-for="City" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Branch" class="control-label"></label>
-                <input asp-for="Branch" class="form-control" />
-                <span asp-validation-for="Branch" class="text-danger"></span>
+                <label asp-for="Purposes" class="control-label"></label>
+                <select asp-for="Purposes" class="form-control" asp-items="ViewBag.Purposes"></select>
+                <span asp-validation-for="Purposes" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="CommunityWorks" class="control-label"></label>
+                <select asp-for="CommunityWorks" class="form-control" asp-items=@ViewBag.CommunityWorks></select>
+                <span asp-validation-for="CommunityWorks" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Manager" class="control-label"></label>
+                <input asp-for="Manager" class="form-control" />
+                <span asp-validation-for="Manager" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

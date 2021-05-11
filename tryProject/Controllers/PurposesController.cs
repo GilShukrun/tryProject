@@ -22,7 +22,7 @@ namespace tryProject.Controllers
         // GET: Purposes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Purpose.ToListAsync());
+            return View(await _context.Purpose.Include(p=> p.Association).Include(p=>p.MoneyDonation).ToListAsync());
         }
 
         // GET: Purposes/Details/5
@@ -47,7 +47,7 @@ namespace tryProject.Controllers
         public IActionResult Create()
         {
             ViewData["Association"] = new SelectList(_context.Set<Association>(), "Id", "Name");
-            ViewData["MoneyDonation"] = new SelectList(_context.Set<MoneyDonation>(), "Id", "Sum");
+            ViewData["MoneyDonation"] = new SelectList(_context.Set<MoneyDonation>(), "Id", "Id");
             return View();
         }
 
@@ -56,7 +56,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,AssociationId,MoneyDonation")] Purpose purpose)
+        public async Task<IActionResult> Create([Bind("Id,Name,AssociationName,MoneyDonation")] Purpose purpose)
         {
             if (ModelState.IsValid)
             {

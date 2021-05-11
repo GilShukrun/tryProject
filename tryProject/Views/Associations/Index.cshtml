@@ -18,7 +18,16 @@
             <th>
                 @Html.DisplayNameFor(model => model.City)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Purposes)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.CommunityWorks)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manager)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -30,6 +39,27 @@
             <td>
                 @Html.DisplayFor(modelItem => item.City)
             </td>
+            
+            <td>
+                <ul>
+                    @foreach (var purpose in item.Purposes)
+                    {
+                        <li>@purpose.Name</li>
+                    }
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    @foreach (var com in item.CommunityWorks)
+                    {
+                        <li>@com.Decscription</li>
+                    }
+                </ul>
+            </td>
+           
+        <th>
+            @Html.DisplayFor(modelItem => item.Manager.Name)
+        </th>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

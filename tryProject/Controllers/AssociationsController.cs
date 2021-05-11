@@ -22,7 +22,7 @@ namespace tryProject.Controllers
         // GET: Associations
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Association.ToListAsync());
+            return View(await _context.Association.Include(p => p.Purposes).Include(p=> p.CommunityWorks).Include(p => p.Manager).ToListAsync());
         }
 
         // GET: Associations/Details/5
@@ -33,7 +33,7 @@ namespace tryProject.Controllers
                 return NotFound();
             }
 
-            var association = await _context.Association
+            var association = await _context.Association.Include(a=>a.Purposes).Include(a=>a.CommunityWorks).Include(a=>a.Manager.Name)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (association == null)
             {
@@ -46,7 +46,8 @@ namespace tryProject.Controllers
         // GET: Associations/Create
         public IActionResult Create()
         {
-            ViewData["Manager"] = new SelectList(_context.Set<Manager>(), "Id", "Name", "City");
+            ViewData["Purposes"] = new SelectList(_context.Set<Purpose>(),"Id","Name" );
+            ViewData["CommunityWorks"] = new SelectList(_context.Set<CommunityWorks>(),"Id", "Description");
             return View();
         }
 
@@ -55,7 +56,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,City")] Association association)
+        public async Task<IActionResult> Create([Bind("Id,Name,City,PurposeName,CommunityWorks,ManagerName")] Association association)
         {
             if (ModelState.IsValid)
             {
@@ -63,6 +64,8 @@ namespace tryProject.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            //ViewData["Purpose"] = new SelectList(_context.Purpose, "Id", "Id");
+            
             return View(association);
         }
 

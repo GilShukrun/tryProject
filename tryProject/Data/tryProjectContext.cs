@@ -22,9 +22,6 @@ namespace tryProject.Data
 
 
 
-        public DbSet<tryProject.Models.Branch> Branch { get; set; }
-
-
 
         public DbSet<tryProject.Models.CommunityWorks> CommunityWorks { get; set; }
 

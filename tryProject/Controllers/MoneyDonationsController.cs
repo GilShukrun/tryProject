@@ -22,8 +22,8 @@ namespace tryProject.Controllers
         // GET: MoneyDonations
         public async Task<IActionResult> Index()
         {
-            var tryProjectContext = _context.MoneyDonation.Include(m => m.Purpose);
-            return View(await tryProjectContext.ToListAsync());
+           // var tryProjectContext = _context.MoneyDonation.Include(m => m.Purpose);
+            return View(await _context.MoneyDonation.Include(m=>m.Purpose).ToListAsync());
         }
 
         // GET: MoneyDonations/Details/5
@@ -34,7 +34,7 @@ namespace tryProject.Controllers
                 return NotFound();
             }
 
-            var moneyDonation = await _context.MoneyDonation
+            var moneyDonation = await _context.MoneyDonation.Include(m=>m.Purpose)
                 .Include(m => m.Purpose)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (moneyDonation == null)
@@ -48,7 +48,7 @@ namespace tryProject.Controllers
         // GET: MoneyDonations/Create
         public IActionResult Create()
         {
-            ViewData["PurposeId"] = new SelectList(_context.Purpose, "Id", "Id","Name");
+            ViewData["Purpose"] = new SelectList(_context.Purpose, "Id","Name");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Sum,PurposeId")] MoneyDonation moneyDonation)
+        public async Task<IActionResult> Create([Bind("Id,Sum,PurposeName")] MoneyDonation moneyDonation)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace tryProject.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PurposeId"] = new SelectList(_context.Purpose, "Id", "Id", moneyDonation.PurposeId);
+            ViewData["Purpose"] = new SelectList(_context.Purpose, "Id", "Name", moneyDonation.Purpose);
             return View(moneyDonation);
         }
 
@@ -82,7 +82,7 @@ namespace tryProject.Controllers
             {
                 return NotFound();
             }
-            ViewData["PurposeId"] = new SelectList(_context.Purpose, "Id", "Id", moneyDonation.PurposeId);
+            ViewData["Purpose"] = new SelectList(_context.Purpose, "Id", "Id", moneyDonation.Purpose);
             return View(moneyDonation);
         }
 
@@ -91,7 +91,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Sum,PurposeId")] MoneyDonation moneyDonation)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Sum,PurposeName")] MoneyDonation moneyDonation)
         {
             if (id != moneyDonation.Id)
             {
@@ -118,7 +118,7 @@ namespace tryProject.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PurposeId"] = new SelectList(_context.Purpose, "Id", "Id", moneyDonation.PurposeId);
+            ViewData["Purpose"] = new SelectList(_context.Purpose, "Id", "Id", moneyDonation.Purpose);
             return View(moneyDonation);
         }
 

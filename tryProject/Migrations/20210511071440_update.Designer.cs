@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using tryProject.Data;
 
 namespace tryProject.Migrations
 {
     [DbContext(typeof(tryProjectContext))]
-    partial class tryProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20210511071440_update")]
+    partial class update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,6 +66,26 @@ namespace tryProject.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Association");
+                });
+
+            modelBuilder.Entity("tryProject.Models.Branch", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AssociationId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AssociationId");
+
+                    b.ToTable("Branch");
                 });
 
             modelBuilder.Entity("tryProject.Models.CommunityWorks", b =>
@@ -167,6 +189,17 @@ namespace tryProject.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("tryProject.Models.Branch", b =>
+                {
+                    b.HasOne("tryProject.Models.Association", "Association")
+                        .WithMany("Branch")
+                        .HasForeignKey("AssociationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Association");
+                });
+
             modelBuilder.Entity("tryProject.Models.Manager", b =>
                 {
                     b.HasOne("tryProject.Models.Association", "Association")
@@ -191,6 +224,8 @@ namespace tryProject.Migrations
 
             modelBuilder.Entity("tryProject.Models.Association", b =>
                 {
+                    b.Navigation("Branch");
+
                     b.Navigation("Manager");
                 });
 

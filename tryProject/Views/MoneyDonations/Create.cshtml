@@ -18,8 +18,8 @@
                 <span asp-validation-for="Sum" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PurposeId" class="control-label"></label>
-                <select asp-for="PurposeId" class ="form-control" asp-items="ViewBag.PurposeId"></select>
+                <label asp-for="Purpose" class="control-label"></label>
+                <select asp-for="Purpose" class ="form-control" asp-items=@ViewBag.Purpose></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

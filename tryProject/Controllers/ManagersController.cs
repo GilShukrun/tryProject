@@ -22,8 +22,8 @@ namespace tryProject.Controllers
         // GET: Managers
         public async Task<IActionResult> Index()
         {
-            var tryProjectContext = _context.Manager.Include(m => m.Association);
-            return View(await tryProjectContext.ToListAsync());
+            //var tryProjectContext = _context.Manager.Include(m => m.Association);
+            return View(await _context.CommunityWorks.Include(m=>m.Association).ToListAsync());
         }
 
         // GET: Managers/Details/5
@@ -48,7 +48,7 @@ namespace tryProject.Controllers
         // GET: Managers/Create
         public IActionResult Create()
         {
-            ViewData["AssociationId"] = new SelectList(_context.Association, "Id", "Id");
+            ViewData["Association"] = new SelectList(_context.Association, "Id", "Name");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,AssociationId,Association Name")] Manager manager)
+        public async Task<IActionResult> Create([Bind("Id,Name,AssocaitionName")] Manager manager)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace tryProject.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AssociationId"] = new SelectList(_context.Association, "Id", "Id", manager.AssociationId);
+            ViewData["Association"] = new SelectList(_context.Association, "Id", "Name", manager.AssociationId);
             return View(manager);
         }
 
@@ -82,7 +82,7 @@ namespace tryProject.Controllers
             {
                 return NotFound();
             }
-            ViewData["AssociationId"] = new SelectList(_context.Association, "Id", "Id", manager.AssociationId);
+            ViewData["Association"] = new SelectList(_context.Association, "Id", "Name", manager.Association);
             return View(manager);
         }
 
@@ -118,7 +118,7 @@ namespace tryProject.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AssociationId"] = new SelectList(_context.Association, "Id", "Id", manager.AssociationId);
+            ViewData["Association"] = new SelectList(_context.Association, "Id", "Id", manager.AssociationId);
             return View(manager);
         }
 
