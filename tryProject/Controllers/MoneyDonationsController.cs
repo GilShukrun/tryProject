@@ -48,7 +48,7 @@ namespace tryProject.Controllers
         // GET: MoneyDonations/Create
         public IActionResult Create()
         {
-            ViewData["Purpose"] = new SelectList(_context.Purpose, "Id","Name");
+            ViewData["PurposeId"] = new SelectList(_context.Purpose, nameof(Purpose.Id),nameof(Purpose.Name));
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Sum,PurposeName")] MoneyDonation moneyDonation)
+        public async Task<IActionResult> Create([Bind("Id,Sum,PurposeId")] MoneyDonation moneyDonation)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace tryProject.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Purpose"] = new SelectList(_context.Purpose, "Id", "Name", moneyDonation.Purpose);
+            ViewData["PurposeId"] = new SelectList(_context.Purpose, nameof(Purpose.Id), nameof(Purpose.Name));
             return View(moneyDonation);
         }
 

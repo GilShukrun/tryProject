@@ -56,7 +56,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,AssociationName,MoneyDonationSum")] Purpose purpose)
+        public async Task<IActionResult> Create([Bind("Id,Name,AssociationId,MoneyDonation")] Purpose purpose)
         {
             if (ModelState.IsValid)
             {
@@ -80,8 +80,8 @@ namespace tryProject.Controllers
             {
                 return NotFound();
             }
-            ViewData["Association"] = new SelectList(_context.Set<Association>(), "Id", "Name");
-            ViewData["MoneyDonation"] = new SelectList(_context.Set<MoneyDonation>(), "Id", "Sum");
+            ViewData["Association"] = new SelectList(_context.Set<Association>(), nameof(Association.Id),nameof(Association.Name));
+            ViewData["MoneyDonation"] = new SelectList(_context.Set<MoneyDonation>(), nameof(MoneyDonation.Id), nameof(MoneyDonation.Sum));
             return View(purpose);
         }
 
