@@ -64,8 +64,9 @@ namespace tryProject.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Purpose"] = new SelectList(_context.Purpose, "Id", "Id");
-            
+            ViewData["Purpose"] = new SelectList(_context.Purpose, "Id", "Name");
+            ViewData["CommunityWorks"] = new SelectList(_context.Set<CommunityWorks>(), "Id", "Description");
+
             return View(association);
         }
 
@@ -117,6 +118,8 @@ namespace tryProject.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Purpose"] = new SelectList(_context.Purpose, "Id", "Name");
+            ViewData["CommunityWorks"] = new SelectList(_context.Set<CommunityWorks>(), "Id", "Description");
             return View(association);
         }
 

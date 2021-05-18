@@ -21,9 +21,8 @@ namespace tryProject.Controllers
 
         // GET: Managers
         public async Task<IActionResult> Index()
-        {
-            //var tryProjectContext = _context.Manager.Include(m => m.Association);
-            return View(await _context.CommunityWorks.Include(m=>m.Association).ToListAsync());
+        { 
+            return View(await _context.Manager.Include(m=>m.Association).ToListAsync());
         }
 
         // GET: Managers/Details/5
@@ -48,7 +47,7 @@ namespace tryProject.Controllers
         // GET: Managers/Create
         public IActionResult Create()
         {
-            ViewData["Association"] = new SelectList(_context.Association, "Id", "Name");
+            ViewData["AssociationId"] = new SelectList(_context.Association, "Id", "Name");
             return View();
         }
 
@@ -57,7 +56,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,AssocaitionName")] Manager manager)
+        public async Task<IActionResult> Create([Bind("Id,Name,AssociationId,Association")] Manager manager)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +64,7 @@ namespace tryProject.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Association"] = new SelectList(_context.Association, "Id", "Name", manager.AssociationId);
+            ViewData["AssociationId"] = new SelectList(_context.Association, nameof(Association.Id), nameof(Association.Name));
             return View(manager);
         }
 
@@ -82,7 +81,7 @@ namespace tryProject.Controllers
             {
                 return NotFound();
             }
-            ViewData["Association"] = new SelectList(_context.Association, "Id", "Name", manager.Association);
+            ViewData["Association"] = new SelectList(_context.Association, "Id", "Name");
             return View(manager);
         }
 
