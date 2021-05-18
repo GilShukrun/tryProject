@@ -9,13 +9,14 @@ namespace tryProject.Models
     public class Manager
     {
         public int Id { get; set; }
+
         [Required(ErrorMessage ="You must write the name of the manager")]
         public string Name { get; set; }
 
-        public int AssociationId { get; set; }
-
         [Display(Name = "Association Name")]
-        [Required(ErrorMessage ="You must write which association he manage")]
+        [Required(ErrorMessage = "You must write which association he manages")]
+        public int AssociationId { get; set; }
+        
         public Association Association { get; set; }
     }
 }

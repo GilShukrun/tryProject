@@ -46,7 +46,7 @@ namespace tryProject.Controllers
         // GET: CommunityWorks/Create
         public IActionResult Create()
         {
-            ViewData["Association"] = new SelectList(_context.Set<Association>(),"Id", "Name");
+            ViewData["Association"] = new SelectList(_context.Set<Association>(),nameof(Association.Id), nameof(Association.Name));
             return View();
         }
 
@@ -112,8 +112,10 @@ namespace tryProject.Controllers
                         throw;
                     }
                 }
+                
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Association"] = new SelectList(_context.Set<Association>(), "Id", "Name");
             return View(communityWorks);
         }
 

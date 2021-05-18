@@ -82,7 +82,7 @@ namespace tryProject.Controllers
             {
                 return NotFound();
             }
-            ViewData["Purpose"] = new SelectList(_context.Purpose, "Id", "Id", moneyDonation.Purpose);
+            ViewData["Purpose"] = new SelectList(_context.Purpose, "Id", "Name", moneyDonation.Purpose);
             return View(moneyDonation);
         }
 

@@ -13,6 +13,7 @@ namespace tryProject.Models
         [Required(ErrorMessage ="You must say the purpose of this donation")]
         public string Name { get; set; }
 
+        [Display(Name="Money Donations")]
         public List<MoneyDonation> MoneyDonation{ get; set; }
 
         [Display(Name="Association")]

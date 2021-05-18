@@ -118,7 +118,7 @@ namespace tryProject.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Association"] = new SelectList(_context.Association, "Id", "Id", manager.AssociationId);
+            ViewData["Association"] = new SelectList(_context.Association, "Id", "Name", manager.AssociationId);
             return View(manager);
         }
 

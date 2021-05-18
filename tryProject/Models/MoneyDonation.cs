@@ -13,9 +13,10 @@ namespace tryProject.Models
         [Required(ErrorMessage ="You must insert the amount of money you want to donate")]
         public int Sum{ get; set; }
 
-        public int PurposeId { get; set; }
-        [Required(ErrorMessage ="You must say which purpose this money is donate for")]
+        [Required(ErrorMessage = "You must say which purpose this money is donate for")]
         [Display(Name = "Purpose")]
+        public int PurposeId { get; set; }
+        
         public Purpose Purpose { get; set; }
         
     }
