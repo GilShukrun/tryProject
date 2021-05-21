@@ -33,7 +33,8 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Contact</a>
                         </li>
-
+                    </ul>
+                    <ul class="navlog">
                         @if (Context.User != null && Context.User.Claims != null && Context.User.Claims.Count() > 0)
                         {
                             <li class="nav-item">

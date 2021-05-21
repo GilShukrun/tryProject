@@ -17,9 +17,9 @@ a {
     color: white;
 }
 
-    a span {
-        color: cadetblue;
-    }
+a span {
+    color: cadetblue;
+}
 
 img {
     height: 100%;
@@ -58,6 +58,11 @@ header a:hover {
     color: cadetblue;
 }
 
+.navlog {
+    display: flex;
+    list-style-type: none;
+}
+
 /*  End header 
 -------------------------------------------------- */
 
@@ -69,57 +74,57 @@ footer {
     background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
 }
 
-    footer .container {
-        min-height: 200px;
-        flex-direction: column;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        text-align: center;
-    }
+footer .container {
+    min-height: 200px;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
 
-    footer .brand {
-        color: white;
-    }
+footer .brand {
+    color: white;
+}
 
-        footer .brand span {
-            color: cadetblue;
-        }
+footer .brand span {
+    color: cadetblue;
+}
 
-    footer h9 {
-        color: white;
-        font-weight: 500;
-        font-size: 1rem;
-        letter-spacing: .1rem;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
+footer h9 {
+    color: white;
+    font-weight: 500;
+    font-size: 1rem;
+    letter-spacing: .1rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
-    footer .social-icon {
-        display: flex;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        justify-content: center;
-    }
+footer .social-icon {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: center;
+}
 
-    footer .social-item {
-        height: 50px;
-        width: 50px;
-        margin: 0 5px;
-    }
+footer .social-item {
+    height: 50px;
+    width: 50px;
+    margin: 0 5px;
+}
 
-        footer .social-item img {
-            filter: grayscale(1);
-            transition: .3s ease filter;
-        }
+footer .social-item img {
+    filter: grayscale(1);
+    transition: .3s ease filter;
+}
 
-        footer .social-item:hover img {
-            filter: grayscale(0);
-        }
+footer .social-item:hover img {
+    filter: grayscale(0);
+}
 
-    footer p {
-        color: white;
-        font-size: 1.3rem;
-    }
+footer p {
+    color: white;
+    font-size: 1.3rem;
+}
 
 /*  End footer 
 -------------------------------------------------- */
