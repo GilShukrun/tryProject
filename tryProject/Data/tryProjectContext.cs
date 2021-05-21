@@ -32,5 +32,9 @@ namespace tryProject.Data
 
 
         public DbSet<tryProject.Models.Manager> Manager { get; set; }
+
+
+
+        public DbSet<tryProject.Models.User> User { get; set; }
     }
 }
