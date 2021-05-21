@@ -59,8 +59,22 @@ header a:hover {
 }
 
 .navlog {
+    align-self:center;
     display: flex;
     list-style-type: none;
+}
+
+.navlog a {
+    margin:3px;
+    border:3px solid cadetblue;
+    background-color:transparent;
+    color:cadetblue;
+}
+
+.navlog a:hover {
+        border: 3px solid cadetblue;
+        background-color: cadetblue;
+        color: white;
 }
 
 /*  End header 

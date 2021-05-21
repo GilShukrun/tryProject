@@ -29,12 +29,12 @@
                 <p>if you click the button you should be directed to foundations that want to get basic items that are needed</p>
             </div>
             <div class="donations-item">
-                <div class="icon"><a href=""><img src="~/images/serve.png" /></a></div>
+                <div class="icon"><a asp-area ="" asp-controller="CommunityWorks" asp-action="Index"><img src="~/images/serve.png" /></a></div>
                 <h2>Comunity Work</h2>
                 <p>The link should take you to a page filled with comunty work.</p>
             </div>
             <div class="donations-item">
-                <div class="icon"><a href=""><img src="~/images/donate.png" /></a></div>
+                <div class="icon"><a asp-area ="" asp-controller="MoneyDonations" asp-action="Index"><img src="~/images/donate.png" /></a></div>
                 <h2>Donate</h2>
                 <p>If you just want to give away money</p>
             </div>
@@ -51,9 +51,8 @@
         <div class="all-forums">
             <div class="forum-item">
                 <div class="forum-info">
-                    <h1>forum a</h1>
-                    <h2>help build a house</h2>
-                    <p>A platform where the users of the site can talk about what can they do to help the community/brag what they did</p>
+                    <a class="nav-link" asp-area="" asp-controller="" asp-action=""><h1>Forums</h1></a>
+                    <p>Be an active part in our desccusions in making the world a better place</p>
                 </div>
                 <div class="forum-img">
                     <img src="~/images/img2.jpeg" alt="img">

@@ -1,0 +1,29 @@
+﻿
+
+.comunity {
+    background-image: url("../images/community.jpeg");
+    background-size:cover;
+    padding:30px;
+}
+
+.comunity a{
+    color: darkcyan;
+}
+
+.comunity span {
+        color: cadetblue;
+}
+
+.tData {
+    border: 2px solid darkslategrey;
+    background-color:white;
+    opacity: .8;
+}
+
+.table {
+    margin:0;
+}
+
+
+
+

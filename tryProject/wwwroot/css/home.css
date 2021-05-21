@@ -33,7 +33,7 @@
 }
 
 #intro h1 span {
-            color: cadetblue;
+        color: cadetblue;
 }
 
 /*End greeting*/
@@ -161,12 +161,6 @@
     font-weight: 500;
 }
 
-#forums .forum-info h2 {
-    font-size: 1.8rem;
-    font-weight: 500;
-    margin-top: 10px;
-}
-
 #forums .forum-info p {
     color: white;
 }
@@ -176,6 +170,10 @@
     height: 300px;
     overflow: hidden;
     position: relative;
+}
+
+#forums .forum-info a:hover {
+    color:cadetblue;
 }
 
 #forums .forum-img:after {
@@ -190,7 +188,7 @@
 }
 
 #forums .forum-img img {
-        transition: .3s ease transform;
+    transition: .3s ease transform;
 }
 
 #forums .forum-item:hover .project-img img {
@@ -200,6 +198,7 @@
 
 /* About Section */
 #about .about {
+    display:flex;
     flex-direction: column-reverse;
     text-align: center;
     max-width: 1200px;

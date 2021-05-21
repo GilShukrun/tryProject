@@ -1,0 +1,25 @@
+﻿.container {
+    margin:40px;  
+}
+
+hr {
+    width:50%;
+}
+
+.relocc a{
+    color:cadetblue;
+}
+
+.btn {
+    background-color:transparent;
+    width:100px;
+    height:40px;
+    border:2px solid cadetblue;
+    color:cadetblue;
+}
+
+.btn:hover {
+    background-color: cadetblue;
+    border-color:cadetblue;
+    color: white;
+}

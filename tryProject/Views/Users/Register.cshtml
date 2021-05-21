@@ -5,9 +5,14 @@
     Layout = "_LoginLayout";
 }
 
-<h1>Register a new user</h1>
+<head>
+    <link rel="stylesheet" href="~/css/reg.css" />
+</head>
 
-<h4>User</h4>
+
+<h1>Join Us</h1>
+
+<h4>New User</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -39,7 +44,7 @@
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Register" class="btn btn-primary" />
+                <input type="submit" value="Register" class="btn" />
             </div>
         </form>
         @if (ViewBag.Error != null)
@@ -49,7 +54,9 @@
     </div> 
 </div>
 
-<div>
+<hr />
+
+<div class="relocc">
     Already registered? <a asp-action="Login">Click here</a> to login
 </div>
 
