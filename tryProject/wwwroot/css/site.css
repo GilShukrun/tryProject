@@ -17,9 +17,9 @@ a {
     color: white;
 }
 
-a span {
-    color: cadetblue;
-}
+    a span {
+        color: cadetblue;
+    }
 
 img {
     height: 100%;
@@ -59,23 +59,24 @@ header a:hover {
 }
 
 .navlog {
-    align-self:center;
+    align-self: center;
     display: flex;
     list-style-type: none;
 }
 
-.navlog a {
-    margin:3px;
-    border:3px solid cadetblue;
-    background-color:transparent;
-    color:cadetblue;
-}
-
-.navlog a:hover {
+    .navlog a {
+        margin: 3px;
         border: 3px solid cadetblue;
-        background-color: cadetblue;
-        color: white;
-}
+        background-color: transparent;
+        color: cadetblue;
+    }
+
+        .navlog a:hover {
+            border: 3px solid cadetblue;
+            background-color: cadetblue;
+            color: white;
+        }
+
 
 /*  End header 
 -------------------------------------------------- */
@@ -88,57 +89,57 @@ footer {
     background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
 }
 
-footer .container {
-    min-height: 200px;
-    flex-direction: column;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    text-align: center;
-}
+    footer .container {
+        min-height: 200px;
+        flex-direction: column;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+    }
 
-footer .brand {
-    color: white;
-}
+    footer .brand {
+        color: white;
+    }
 
-footer .brand span {
-    color: cadetblue;
-}
+        footer .brand span {
+            color: cadetblue;
+        }
 
-footer h9 {
-    color: white;
-    font-weight: 500;
-    font-size: 1rem;
-    letter-spacing: .1rem;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
+    footer h9 {
+        color: white;
+        font-weight: 500;
+        font-size: 1rem;
+        letter-spacing: .1rem;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 
-footer .social-icon {
-    display: flex;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    justify-content: center;
-}
+    footer .social-icon {
+        display: flex;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        justify-content: center;
+    }
 
-footer .social-item {
-    height: 50px;
-    width: 50px;
-    margin: 0 5px;
-}
+    footer .social-item {
+        height: 50px;
+        width: 50px;
+        margin: 0 5px;
+    }
 
-footer .social-item img {
-    filter: grayscale(1);
-    transition: .3s ease filter;
-}
+        footer .social-item img {
+            filter: grayscale(1);
+            transition: .3s ease filter;
+        }
 
-footer .social-item:hover img {
-    filter: grayscale(0);
-}
+        footer .social-item:hover img {
+            filter: grayscale(0);
+        }
 
-footer p {
-    color: white;
-    font-size: 1.3rem;
-}
+    footer p {
+        color: white;
+        font-size: 1.3rem;
+    }
 
 /*  End footer 
 -------------------------------------------------- */
