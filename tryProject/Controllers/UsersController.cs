@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace tryProject.Controllers
 {
     public class UsersController : Controller
     {
+       
         private readonly tryProjectContext _context;
 
         public UsersController(tryProjectContext context)
@@ -34,6 +36,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+     
         public async Task<IActionResult> Register([Bind("UserName,Password,Volunteer,Name,Email")] User user)
         {
             if (ModelState.IsValid)
@@ -41,7 +44,7 @@ namespace tryProject.Controllers
                 var q = _context.User.FirstOrDefault(u => u.UserName == user.UserName);
                 if (q == null)
                 {
-                    _context.Add(user);
+                    _= _context.Add(entity : user);
                     await _context.SaveChangesAsync();
                     var u = _context.User.FirstOrDefault(u => u.UserName == user.UserName && u.Password == user.Password);
                     Signin(u);
