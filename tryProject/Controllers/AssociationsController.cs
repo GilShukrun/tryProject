@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using tryProject.Data;
 using tryProject.Models;
 
@@ -13,6 +15,7 @@ namespace tryProject.Controllers
     public class AssociationsController : Controller
     {
         private readonly tryProjectContext _context;
+        private object ap;
 
         public AssociationsController(tryProjectContext context)
         {
@@ -24,6 +27,17 @@ namespace tryProject.Controllers
         {
             return View(await _context.Association.Include(p => p.Purposes).Include(p=> p.CommunityWorks).Include(p => p.Manager).ToListAsync());
         }
+
+        public async Task<IActionResult> Groupby()
+        {
+            var g = from a in _context.Association.Include(a=>a.CommunityWorks).Include(a => a.Manager)
+                    group a by a.Purposes
+                    into ap
+                    select ap;
+           return View("Index",g.ToListAsync());
+        }
+
+
 
         // GET: Associations/Details/5
         public async Task<IActionResult> Details(int? id)
