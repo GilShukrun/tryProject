@@ -97,7 +97,7 @@ namespace tryProject.Controllers
                     return RedirectToAction(nameof(Index), "Home");
                 }
                 else
-                    ViewData["Error"] = "User Name and/or password are incorrect.";
+                    ViewData["Error"] = "UserName and/or password are incorrect.";
 
             }
             return View(user);

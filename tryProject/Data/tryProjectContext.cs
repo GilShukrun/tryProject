@@ -36,9 +36,5 @@ namespace tryProject.Data
 
 
         public DbSet<tryProject.Models.User> User { get; set; }
-
-
-
-        
     }
 }
