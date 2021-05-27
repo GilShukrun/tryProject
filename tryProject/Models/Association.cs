@@ -21,6 +21,7 @@ namespace tryProject.Models
         public List<Purpose> Purposes { get; set; }
 
         public List<CommunityWorks> CommunityWorks{ get; set; }
+      
 
         [Required(ErrorMessage ="You must write the manger of this association")]
         public Manager Manager { get; set; }

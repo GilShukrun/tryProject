@@ -9,7 +9,7 @@ using tryProject.Data;
 namespace tryProject.Migrations
 {
     [DbContext(typeof(tryProjectContext))]
-    [Migration("20210521092119_Init")]
+    [Migration("20210527132026_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -149,6 +149,7 @@ namespace tryProject.Migrations
             modelBuilder.Entity("tryProject.Models.User", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Email")
@@ -159,10 +160,16 @@ namespace tryProject.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<bool>("Volunteer")
                         .HasColumnType("bit");
