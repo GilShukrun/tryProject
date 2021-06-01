@@ -46,7 +46,6 @@ namespace tryProject.Controllers
         // GET: CommunityWorks/Create
         public IActionResult Create()
         {
-            ViewData["Association"] = new SelectList(_context.Set<Association>(),nameof(Association.Id), nameof(Association.Name));
             return View();
         }
 
@@ -55,7 +54,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Decscription,AssociatioName")] CommunityWorks communityWorks)
+        public async Task<IActionResult> Create([Bind("Id,Decscription")] CommunityWorks communityWorks)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +86,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Decscription,AssociationName")] CommunityWorks communityWorks)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Decscription")] CommunityWorks communityWorks)
         {
             if (id != communityWorks.Id)
             {
@@ -115,7 +114,7 @@ namespace tryProject.Controllers
                 
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Association"] = new SelectList(_context.Set<Association>(), "Id", "Name");
+           // ViewData["Association"] = new SelectList(_context.Set<Association>(), "Id", "Name");
             return View(communityWorks);
         }
 
@@ -127,7 +126,7 @@ namespace tryProject.Controllers
                 return NotFound();
             }
 
-            var communityWorks = await _context.CommunityWorks
+            var communityWorks = await _context.CommunityWorks.Include(c=>c.Association)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (communityWorks == null)
             {

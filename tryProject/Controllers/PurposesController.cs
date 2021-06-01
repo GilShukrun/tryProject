@@ -39,15 +39,15 @@ namespace tryProject.Controllers
             {
                 return NotFound();
             }
-
+            
+            ViewData["Association"] = new SelectList(_context.Association, nameof(Association.Id), nameof(Association.Name));
+            ViewData["MoneyDonation"] = new SelectList(_context.MoneyDonation, nameof(MoneyDonation.Id), nameof(MoneyDonation.Sum));
             return View(purpose);
         }
 
         // GET: Purposes/Create
         public IActionResult Create()
         {
-            ViewData["Association"] = new SelectList(_context.Set<Association>(), nameof(Association.Id), nameof(Association.Name));
-            ViewData["MoneyDonation"] = new SelectList(_context.Set<MoneyDonation>(), nameof(MoneyDonation.Id),nameof(MoneyDonation.Sum));
             return View();
         }
 
@@ -56,7 +56,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,AssociationId,MoneyDonation")] Purpose purpose)
+        public async Task<IActionResult> Create([Bind("Id,Name")] Purpose purpose)
         {
             if (ModelState.IsValid)
             {
@@ -80,8 +80,6 @@ namespace tryProject.Controllers
             {
                 return NotFound();
             }
-            ViewData["Association"] = new SelectList(_context.Set<Association>(), nameof(Association.Id),nameof(Association.Name));
-            ViewData["MoneyDonation"] = new SelectList(_context.Set<MoneyDonation>(), nameof(MoneyDonation.Id), nameof(MoneyDonation.Sum));
             return View(purpose);
         }
 
@@ -90,7 +88,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Name,Sum")] Purpose purpose)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Purpose purpose)
         {
             if (id != purpose.Id)
             {
@@ -134,8 +132,6 @@ namespace tryProject.Controllers
             {
                 return NotFound();
             }
-            ViewData["Association"] = new SelectList(_context.Set<Association>(), "Id", "Name");
-            ViewData["MoneyDonation"] = new SelectList(_context.Set<MoneyDonation>(), "Id", "Sum");
             return View(purpose);
         }
 

@@ -28,14 +28,19 @@ namespace tryProject.Controllers
             return View(await _context.Association.Include(p => p.Purposes).Include(p=> p.CommunityWorks).Include(p => p.Manager).ToListAsync());
         }
 
-        public async Task<IActionResult> Groupby()
-        {
-            var g = from a in _context.Association.Include(a=>a.CommunityWorks).Include(a => a.Manager)
-                    group a by a.Purposes
-                    into ap
-                    select ap;
-           return View("Index",g.ToListAsync());
-        }
+        //public async Task<IActionResult> Groupby()
+        //{
+        //    //ViewData["Purposes"] = new SelectList(_context.Purpose, nameof(Purpose.Name));
+        //    // var g = from a in _context.Association
+        //    //         group a by a.Purposes into grp
+        //    //         select new GroupPurposeAssociations { GroupName= ,items=}
+
+        //    var grouped = _context.Association
+        //        .GroupBy(a => a.Purposes, i => i,
+        //                        (key, v) => new GroupPurposeAssociations { GroupName = key, items = v })
+        //        .ToList();
+        //    return View(grouped);
+        //}
 
 
 
@@ -60,8 +65,8 @@ namespace tryProject.Controllers
         // GET: Associations/Create
         public IActionResult Create()
         {
-            ViewData["Purposes"] = new SelectList(_context.Set<Purpose>(),"Id","Name" );
-            ViewData["CommunityWorks"] = new SelectList(_context.Set<CommunityWorks>(),"Id","Description");
+            ViewData["Purposes"] = new SelectList(_context.Set<Purpose>(),nameof(Purpose.Id),nameof(Purpose.Name));
+            ViewData["CommunityWorks"] = new SelectList(_context.Set<CommunityWorks>(), nameof(CommunityWorks.Id),nameof(CommunityWorks.Decscription));
             return View();
         }
 
@@ -70,7 +75,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,City,PurposeName,CommunityWorks,ManagerName")] Association association)
+        public async Task<IActionResult> Create([Bind("Id,Name,City,Purposes,CommunityWorks,Manager")] Association association)
         {
             if (ModelState.IsValid)
             {
@@ -78,8 +83,6 @@ namespace tryProject.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Purpose"] = new SelectList(_context.Purpose, "Id", "Name");
-            ViewData["CommunityWorks"] = new SelectList(_context.Set<CommunityWorks>(), "Id", "Description");
 
             return View(association);
         }
@@ -105,7 +108,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,City")] Association association)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,City,Purpose,CommunityWorks,Manager")] Association association)
         {
             if (id != association.Id)
             {
@@ -132,8 +135,6 @@ namespace tryProject.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Purpose"] = new SelectList(_context.Purpose, "Id", "Name");
-            ViewData["CommunityWorks"] = new SelectList(_context.Set<CommunityWorks>(), "Id", "Description");
             return View(association);
         }
 
@@ -145,7 +146,7 @@ namespace tryProject.Controllers
                 return NotFound();
             }
 
-            var association = await _context.Association
+            var association = await _context.Association.Include(a=>a.Purposes).Include(a=>a.CommunityWorks).Include(a=>a.Manager)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (association == null)
             {

@@ -11,7 +11,7 @@ namespace tryProject.Models
         public int Id { get; set; }
 
         [StringLength(200, MinimumLength =10)]
-        [RegularExpression("^[A-Z]+[a-zA-z]*$")]
+        [RegularExpression("^[A-Z]+[a-z A-z]")]
         [Required(ErrorMessage ="You must describe this work")]
         public string Decscription { get; set; }
 

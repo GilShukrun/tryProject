@@ -91,7 +91,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Sum,PurposeName")] MoneyDonation moneyDonation)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Sum,PurposeId")] MoneyDonation moneyDonation)
         {
             if (id != moneyDonation.Id)
             {
@@ -118,7 +118,7 @@ namespace tryProject.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Purpose"] = new SelectList(_context.Purpose, "Id", "Id", moneyDonation.Purpose);
+            ViewData["Purpose"] = new SelectList(_context.Purpose, nameof(Purpose.Id), nameof(Purpose.Name));
             return View(moneyDonation);
         }
 

@@ -47,7 +47,7 @@ namespace tryProject.Controllers
         // GET: Managers/Create
         public IActionResult Create()
         {
-            ViewData["AssociationId"] = new SelectList(_context.Association, "Id", "Name");
+            ViewData["AssociationId"] = new SelectList(_context.Association, nameof(Association.Id), nameof(Association.Name));
             return View();
         }
 
@@ -56,7 +56,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,AssociationId,Association")] Manager manager)
+        public async Task<IActionResult> Create([Bind("Id,Name,AssociationId")] Manager manager)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +64,7 @@ namespace tryProject.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AssociationId"] = new SelectList(_context.Association, nameof(Association.Id), nameof(Association.Name));
+           // ViewData["AssociationId"] = new SelectList(_context.Association, nameof(Association.Id), nameof(Association.Name));
             return View(manager);
         }
 
@@ -81,7 +81,7 @@ namespace tryProject.Controllers
             {
                 return NotFound();
             }
-            ViewData["Association"] = new SelectList(_context.Association, "Id", "Name");
+            ViewData["AssociationId"] = new SelectList(_context.Association, nameof(Association.Id), nameof(Association.Name));
             return View(manager);
         }
 

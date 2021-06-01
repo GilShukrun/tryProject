@@ -1,7 +1,15 @@
-﻿@model IEnumerable<tryProject.Models.Association>
+﻿@model IEnumerable<GroupPurposeAssociations>
 
-@{
-    ViewData["Title"] = "GroupBy";
+@foreach(var group in Model)
+{
+    <h3>
+        @group.GroupName</h3>
+
+        foreach(var p in group.items)
+            {
+                <p> @p.Name</p>
+            }
+
+
 }
-
 
