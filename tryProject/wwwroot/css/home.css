@@ -417,4 +417,10 @@
         text-align: left;
         padding-left: 20px;
     }
+
+    .center {
+        margin-left: auto;
+        margin-right: auto;
+        display: block
+    }
 }
