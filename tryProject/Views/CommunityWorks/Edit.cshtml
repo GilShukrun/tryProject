@@ -18,11 +18,16 @@
                 <input asp-for="Decscription" class="form-control" />
                 <span asp-validation-for="Decscription" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="Association" class="control-label"></label>
-                <select asp-for="Association" class="form-control" asp-items=@ViewBag.Association></select>
-                <span asp-validation-for="Association" class="text-danger"></span>
-            </div>*@
+            <div class="form-group">
+                <label asp-for="AssociationId" class="control-label"></label>
+                <select asp-for="AssociationId" class="form-control" asp-items="ViewBag.AssociationId"></select>
+                <span asp-validation-for="AssociationId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkOrGiveId" class="control-label"></label>
+                <select asp-for="WorkOrGiveId" class="form-control" asp-items="ViewBag.WorkOrGiveId"></select>
+                <span asp-validation-for="WorkOrGiveId" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

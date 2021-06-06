@@ -1,4 +1,4 @@
-﻿@model IEnumerable<tryProject.Models.CommunityWorks>
+﻿@model IEnumerable<tryProject.Models.Zone>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,13 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Decscription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Association)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WorkOrGive)
+                @Html.DisplayNameFor(model => model.Name)
             </th>
             <th></th>
         </tr>
@@ -28,13 +22,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Decscription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Association.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.WorkOrGive.Name)
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

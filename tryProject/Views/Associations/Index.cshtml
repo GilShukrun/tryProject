@@ -9,11 +9,6 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-
-<p>
-    <a asp-action="Groupby">Watch by purposes</a>
-</p>
-
 <table class="table">
     <thead>
         <tr>
@@ -24,15 +19,21 @@
                 @Html.DisplayNameFor(model => model.City)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Website)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CatersTo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Zones)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Purposes)
             </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.CommunityWorks)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Manager)
-            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -44,27 +45,33 @@
             <td>
                 @Html.DisplayFor(modelItem => item.City)
             </td>
-            
             <td>
-                <ul>
-                    @foreach (var purpose in item.Purposes)
-                    {
-                        <li>@purpose.Name</li>
-                    }
-                </ul>
+                @Html.DisplayFor(modelItem => item.Website)
             </td>
             <td>
-                <ul>
-                    @foreach (var com in item.CommunityWorks)
-                    {
-                        <li>@com.Decscription</li>
-                    }
-                </ul>
+                @Html.DisplayFor(modelItem => item.Email)
             </td>
-           
-        <th>
-            @Html.DisplayFor(modelItem => item.Manager.Name)
-        </th>
+            <td>
+                @foreach (var iner in item.CatersTo)
+                {
+                    <div>@iner.Name</div>
+                }
+
+            </td>
+            <td>
+                @foreach (var iner in item.Zones)
+                {
+                    <div>@iner.Name</div>
+                }
+
+            </td>
+            <td>
+                @foreach (var iner in item.Purposes)
+                {
+                    <div>@iner.Name</div>
+                }
+
+            </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

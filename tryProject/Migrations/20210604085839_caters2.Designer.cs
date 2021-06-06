@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using tryProject.Data;
 
 namespace tryProject.Migrations
 {
     [DbContext(typeof(tryProjectContext))]
-    partial class tryProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20210604085839_caters2")]
+    partial class caters2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,12 +25,12 @@ namespace tryProject.Migrations
                     b.Property<int>("AssociationsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CatersToId")
+                    b.Property<int>("Caters2Id")
                         .HasColumnType("int");
 
-                    b.HasKey("AssociationsId", "CatersToId");
+                    b.HasKey("AssociationsId", "Caters2Id");
 
-                    b.HasIndex("CatersToId");
+                    b.HasIndex("Caters2Id");
 
                     b.ToTable("AssociationCatersTo");
                 });
@@ -277,7 +279,7 @@ namespace tryProject.Migrations
 
                     b.HasOne("tryProject.Models.CatersTo", null)
                         .WithMany()
-                        .HasForeignKey("CatersToId")
+                        .HasForeignKey("Caters2Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -365,7 +367,8 @@ namespace tryProject.Migrations
                 {
                     b.Navigation("CommunityWorks");
 
-                    b.Navigation("Manager");
+                    b.Navigation("Manager")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("tryProject.Models.Purpose", b =>
