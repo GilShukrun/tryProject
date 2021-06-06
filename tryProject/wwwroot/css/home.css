@@ -418,9 +418,9 @@
         padding-left: 20px;
     }
 
-    .center {
-        margin-left: auto;
-        margin-right: auto;
-        display: block
+    iframe{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 }
