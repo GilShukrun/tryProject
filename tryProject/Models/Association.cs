@@ -16,13 +16,18 @@ namespace tryProject.Models
         [StringLength(50,MinimumLength =5)]
         [Required(ErrorMessage ="You must write the city of this association")]
         public string  City { get; set; }
-
-        [Required]
+        [StringLength(50, MinimumLength = 5)]
+        public string Website { get; set; }
+        [StringLength(50, MinimumLength = 5)]
+        public string Email { get; set; }
+        
         public List<Purpose> Purposes { get; set; }
 
         public List<CommunityWorks> CommunityWorks{ get; set; }
 
-        [Required(ErrorMessage ="You must write the manger of this association")]
         public Manager Manager { get; set; }
+
+        public List<Zone> Zones { get; set; }
+        public List<CatersTo> CatersTo { get; set; }
     }
 }

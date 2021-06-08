@@ -22,8 +22,8 @@ namespace tryProject.Controllers
         // GET: MoneyDonations
         public async Task<IActionResult> Index()
         {
-           // var tryProjectContext = _context.MoneyDonation.Include(m => m.Purpose);
-            return View(await _context.MoneyDonation.Include(m=>m.Purpose).ToListAsync());
+            var tryProjectContext = _context.MoneyDonation.Include(m => m.Association).Include(m => m.Purpose);
+            return View(await tryProjectContext.ToListAsync());
         }
 
         // GET: MoneyDonations/Details/5
@@ -34,7 +34,8 @@ namespace tryProject.Controllers
                 return NotFound();
             }
 
-            var moneyDonation = await _context.MoneyDonation.Include(m=>m.Purpose)
+            var moneyDonation = await _context.MoneyDonation
+                .Include(m => m.Association)
                 .Include(m => m.Purpose)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (moneyDonation == null)
@@ -48,7 +49,8 @@ namespace tryProject.Controllers
         // GET: MoneyDonations/Create
         public IActionResult Create()
         {
-            ViewData["PurposeId"] = new SelectList(_context.Purpose, nameof(Purpose.Id),nameof(Purpose.Name));
+            ViewData["AssociationId"] = new SelectList(_context.Set<Association>(), nameof(Association.Id), nameof(Association.Name));
+            ViewData["PurposeId"] = new SelectList(_context.Set<Purpose>(), nameof(Purpose.Id), nameof(Purpose.Name));
             return View();
         }
 
@@ -57,7 +59,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Sum,PurposeId")] MoneyDonation moneyDonation)
+        public async Task<IActionResult> Create([Bind("Id,Name,Sum,RaisedSoFar,PurposeId,AssociationId")] MoneyDonation moneyDonation)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +67,8 @@ namespace tryProject.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PurposeId"] = new SelectList(_context.Purpose, nameof(Purpose.Id), nameof(Purpose.Name));
+            ViewData["AssosiationId"] = new SelectList(_context.Set<Association>(), nameof(Association.Id), nameof(Association.Name),moneyDonation.AssociationId);
+            ViewData["PurposeId"] = new SelectList(_context.Purpose, nameof(Purpose.Id), nameof(Purpose.Id), moneyDonation.PurposeId);
             return View(moneyDonation);
         }
 
@@ -82,7 +85,8 @@ namespace tryProject.Controllers
             {
                 return NotFound();
             }
-            ViewData["Purpose"] = new SelectList(_context.Purpose, "Id", "Name", moneyDonation.Purpose);
+            ViewData["AssociationId"] = new SelectList(_context.Set<Association>(), nameof(Association.Id), nameof(Association.Name));
+            ViewData["PurposeId"] = new SelectList(_context.Set<Purpose>(), nameof(Purpose.Id), nameof(Purpose.Name));
             return View(moneyDonation);
         }
 
@@ -91,7 +95,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Sum,PurposeId")] MoneyDonation moneyDonation)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Sum,RaisedSoFar,PurposeId,AssociationId")] MoneyDonation moneyDonation)
         {
             if (id != moneyDonation.Id)
             {
@@ -118,7 +122,8 @@ namespace tryProject.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Purpose"] = new SelectList(_context.Purpose, nameof(Purpose.Id), nameof(Purpose.Name));
+            ViewData["AssosiationId"] = new SelectList(_context.Set<Association>(), nameof(Association.Id), nameof(Association.Name), moneyDonation.AssociationId);
+            ViewData["PurposeId"] = new SelectList(_context.Purpose, nameof(Purpose.Id), nameof(Purpose.Id), moneyDonation.PurposeId);
             return View(moneyDonation);
         }
 
@@ -131,6 +136,7 @@ namespace tryProject.Controllers
             }
 
             var moneyDonation = await _context.MoneyDonation
+                .Include(m => m.Association)
                 .Include(m => m.Purpose)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (moneyDonation == null)

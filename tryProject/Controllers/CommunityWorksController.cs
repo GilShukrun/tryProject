@@ -22,7 +22,8 @@ namespace tryProject.Controllers
         // GET: CommunityWorks
         public async Task<IActionResult> Index()
         {
-            return View(await _context.CommunityWorks.Include(c=>c.Association).ToListAsync());
+            var tryProjectContext = _context.CommunityWorks.Include(c => c.Association).Include(c => c.WorkOrGive);
+            return View(await tryProjectContext.ToListAsync());
         }
 
         // GET: CommunityWorks/Details/5
@@ -33,7 +34,9 @@ namespace tryProject.Controllers
                 return NotFound();
             }
 
-            var communityWorks = await _context.CommunityWorks.Include(c=>c.Association)
+            var communityWorks = await _context.CommunityWorks
+                .Include(c => c.Association)
+                .Include(c => c.WorkOrGive)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (communityWorks == null)
             {
@@ -46,6 +49,8 @@ namespace tryProject.Controllers
         // GET: CommunityWorks/Create
         public IActionResult Create()
         {
+            ViewData["AssociationId"] = new SelectList(_context.Association, "Id", "Name");
+            ViewData["WorkOrGiveId"] = new SelectList(_context.Set<WorkOrGive>(), "Id", "Name");
             return View();
         }
 
@@ -54,10 +59,12 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Decscription")] CommunityWorks communityWorks)
+        public async Task<IActionResult> Create([Bind("Id,Decscription,AssociationId,WorkOrGiveId")] CommunityWorks communityWorks)
         {
             if (ModelState.IsValid)
             {
+                ViewData["AssociationId"] = new SelectList(_context.Association, "Id", "Name", communityWorks.AssociationId);
+                ViewData["WorkOrGiveId"] = new SelectList(_context.Set<WorkOrGive>(), "Id", "Name", communityWorks.WorkOrGiveId);
                 _context.Add(communityWorks);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -78,6 +85,8 @@ namespace tryProject.Controllers
             {
                 return NotFound();
             }
+            ViewData["AssociationId"] = new SelectList(_context.Association, "Id", "Name", communityWorks.AssociationId);
+            ViewData["WorkOrGiveId"] = new SelectList(_context.Set<WorkOrGive>(), "Id", "Name", communityWorks.WorkOrGiveId);
             return View(communityWorks);
         }
 
@@ -86,7 +95,7 @@ namespace tryProject.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Decscription")] CommunityWorks communityWorks)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Decscription,AssociationId,WorkOrGiveId")] CommunityWorks communityWorks)
         {
             if (id != communityWorks.Id)
             {
@@ -111,10 +120,10 @@ namespace tryProject.Controllers
                         throw;
                     }
                 }
-                
                 return RedirectToAction(nameof(Index));
             }
-           // ViewData["Association"] = new SelectList(_context.Set<Association>(), "Id", "Name");
+            ViewData["AssociationId"] = new SelectList(_context.Association, "Id", "Name", communityWorks.AssociationId);
+            ViewData["WorkOrGiveId"] = new SelectList(_context.Set<WorkOrGive>(), "Id", "Name", communityWorks.WorkOrGiveId);
             return View(communityWorks);
         }
 
@@ -126,7 +135,9 @@ namespace tryProject.Controllers
                 return NotFound();
             }
 
-            var communityWorks = await _context.CommunityWorks.Include(c=>c.Association)
+            var communityWorks = await _context.CommunityWorks
+                .Include(c => c.Association)
+                .Include(c => c.WorkOrGive)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (communityWorks == null)
             {

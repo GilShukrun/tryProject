@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace tryProject.Models
 {
-    public class GroupPurposeAssociations
+    public class GroupManagerAssociations
     {
         public string GroupName { get; set; }
 
-        public IEnumerable<Association> items { get; set; }
+        //public IEnumerable<Association> items { get; set; }
     }
 }

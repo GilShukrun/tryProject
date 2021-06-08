@@ -36,5 +36,18 @@ namespace tryProject.Data
 
 
         public DbSet<tryProject.Models.User> User { get; set; }
+
+
+
+        public DbSet<tryProject.Models.CatersTo> CatersTo { get; set; }
+
+
+
+        public DbSet<tryProject.Models.WorkOrGive> WorkOrGive { get; set; }
+
+
+
+        public DbSet<tryProject.Models.Zone> Zone { get; set; }
+
     }
 }

@@ -11,24 +11,36 @@
     <h4>MoneyDonation</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Sum)
         </dt>
-        <dd class="col-sm-10">
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Sum)
         </dd>
-        <dt class="col-sm-2">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RaisedSoFar)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RaisedSoFar)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Purpose)
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Purpose)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Purpose.Id)
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Purpose.Name)
+        </dd class>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Association)
         </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Purpose.Id)
-        </dd>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Association.City)
+        </dd class>
     </dl>
     
     <form asp-action="Delete">
